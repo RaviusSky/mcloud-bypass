@@ -1,8 +1,15 @@
-const http = require('https')
+const https = require('https')
+const http = require('http')
 
-requestBody("/embed/zkl9r3?key=ec575392f878f5969695c26b48428a67", function(res) {
-	console.log(res)
-})
+
+http.createServer(function(req, res)
+{
+	requestBody(req.url, function(body)
+	{
+		res.write(body)
+		res.end()
+	})
+}).listen(process.env.PORT)
 
 function requestBody(url, callback)
 {
@@ -14,7 +21,7 @@ function requestBody(url, callback)
 		headers: { referer: 'https://fmovies.to' }
 	}
 
-	var x = http.request(options, function(res)
+	var x = https.request(options, function(res)
 	{
 		var data = ""
 
