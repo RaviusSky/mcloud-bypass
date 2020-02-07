@@ -10,6 +10,26 @@ http.createServer(function(req, res)
 		res.end()
 		return
 	}
+	
+	if (req.url.includes("mcloud"))
+	{
+		options = {
+			hostname: "mcloud.to",
+			port: 80,
+			path: req.url.split("mcloud.to")[1],
+			method: 'GET',
+			headers: { 'referer': 'https://fmovies.to' }
+		}
+		var r2 = http.request(options, (res) => {
+			res.on('data', (d) => {
+				console.log(d)
+				res.write(d)
+				res.end();
+			})
+		})
+		r2.end()
+		return
+	}
 
 	console.log(req.url.substr(1))
 	
