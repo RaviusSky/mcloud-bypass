@@ -31,9 +31,9 @@ function requestBody(url, callback)
 
 		res.on('end', function()
 		{
-			console.log(data.toString('utf8'))
+			console.log(data.toString('utf8').split('file":"')[1].split('"')[0])
 
-			callback(data.toString('utf8'))
+			callback(data.toString('utf8').split('file":"')[1].split('"')[0])
 		})
 	});
 
