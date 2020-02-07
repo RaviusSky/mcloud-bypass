@@ -1,3 +1,6 @@
+/*
+Mcloud referer bypass by Ravius
+*/
 const https = require('https')
 const http = require('http')
 
@@ -9,7 +12,7 @@ http.createServer(function(req, res)
 		res.write(body)
 		res.end()
 	})
-}).listen(process.env.PORT)
+}).listen(8585)
 
 function requestBody(url, callback)
 {
@@ -31,9 +34,25 @@ function requestBody(url, callback)
 
 		res.on('end', function()
 		{
-			console.log(data.toString('utf8').split('file":"')[1].split('"')[0])
+			if (typeof data.toString('utf8') != undefined)
+			{
+				if (data.toString('utf8').includes('file":"'))
+				{
+					console.log(data.toString('utf8').split('file":"')[1].split('"')[0])
 
-			callback(data.toString('utf8').split('file":"')[1].split('"')[0])
+					callback(data.toString('utf8').split('file":"')[1].split('"')[0])
+				}
+				else
+				{
+					console.log("Error Occured: Media missing from request")
+					callback("Error Occured: Media missing from request")
+				}
+			}
+			else
+			{
+				console.log("Error Occured: Data is undefined")
+				callback("Error Occured: Data is undefined")
+			}
 		})
 	});
 
