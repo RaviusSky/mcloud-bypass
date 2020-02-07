@@ -2,7 +2,7 @@ const http = require('https')
 
 requestBody("/embed/zkl9r3?key=cbe39dcf0019d5ea5d653eb35c5c6160", function(res) {
 	console.log(res)
-}
+})
 
 function requestBody(url, callback)
 {
