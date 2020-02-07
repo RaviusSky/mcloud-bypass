@@ -1,7 +1,5 @@
 const http = require('https')
 
-var url = "/embed/zkl9r3?key=4199ac386e9bf7c3b815ae8d0c9be514"
-
 http.createServer(function(req, res)
 {
 	requestBody(req.url, function(body)
