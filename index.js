@@ -23,6 +23,8 @@ http.createServer(function(req, res)
 		{
 			console.error(err)
 		}
+		
+		console.log(stdout)
 
 		res.write(stdout)
 		res.end();
