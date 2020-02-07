@@ -1,5 +1,5 @@
 {
-  "name": "curl-proxy",
+  "name": "mcloud-bypass",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -8,12 +8,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/RaviusSky/curl-proxy.git"
+    "url": "git+https://github.com/RaviusSky/mcloud-bypass.git"
   },
   "author": "Ravius",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/RaviusSky/curl-proxy/issues"
+    "url": "https://github.com/RaviusSky/mcloud-bypass/issues"
   },
-  "homepage": "https://github.com/RaviusSky/curl-proxy#readme"
+  "homepage": "https://github.com/RaviusSky/mcloud-bypass#readme"
 }
