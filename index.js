@@ -13,7 +13,7 @@ http.createServer(function(req, res)
 
 	console.log(req.url.substr(1))
 
-	exec('curl '+req.url.substr(1), (err, stdout, stderr) =>
+	exec('curl '+unescape(req.url.substr(1)), (err, stdout, stderr) =>
 	{
 		if (err)
 		{
