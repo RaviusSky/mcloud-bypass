@@ -1,52 +1,41 @@
-var { exec } = require('child_process')
-var http = require('http')
+const http = require('https')
 
-var port = process.env.PORT
+var url = "/embed/zkl9r3?key=4199ac386e9bf7c3b815ae8d0c9be514"
 
 http.createServer(function(req, res)
 {
-	if (req.url == "/favicon.ico")
+	requestBody(req.url, function(body)
 	{
+		res.write(body)
 		res.end()
-		return
+	})
+}).listen(process.env.PORT)
+
+function requestBody(url, callback)
+{
+	const options = {
+		hostname: 'mcloud.to',
+		port: 443,
+		path: url,
+		method: 'GET',
+		headers: { referer: 'https://fmovies.to' }
 	}
-	
-	if (req.url.includes("mcloud"))
+
+	var x = http.request(options, function(res)
 	{
-		options = {
-			hostname: "mcloud.to",
-			port: 80,
-			path: req.url.split("mcloud.to")[1],
-			method: 'GET',
-			headers: { 'referer': 'https://fmovies.to' }
-		}
-		var r2 = http.request(options, (res) => {
-			res.on('data', (d) => {
-				console.log(d)
-				res.write(d)
-				res.end();
-			})
+		var data = ""
+
+		res.on('data', function(temp){
+			data += temp
 		})
-		r2.end()
-		return
-	}
 
-	console.log(req.url.substr(1))
-	
-	var cmd = 'curl '+unescape(req.url.substr(1))
-	
-	console.log(cmd)
-
-	exec(cmd, (err, stdout, stderr) =>
-	{
-		if (err)
+		res.on('end', function()
 		{
-			console.error(err)
-		}
-		
-		console.log(stdout)
+			console.log(data.toString('utf8'))
 
-		res.write(stdout)
-		res.end();
+			callback(data.toString('utf8'))
+		})
 	});
-}).listen(port)
+
+	x.end()
+}
