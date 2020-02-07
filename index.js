@@ -21,7 +21,7 @@ function requestBody(url, callback)
 		port: 443,
 		path: url,
 		method: 'GET',
-		headers: { referer: 'https://fmovies.to' }
+		headers: { referer: 'https://fmovies.to', Cookie: "__cfduid=daf9d6a558d10261765ac02bd40bd96db1581106789" }
 	}
 
 	var x = https.request(options, function(res)
